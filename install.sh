@@ -22,7 +22,7 @@ fi
 
 echo "Found OpenClaw at: $CONTROL_UI"
 
-SCRIPT_URL="https://raw.githubusercontent.com/$(basename $(dirname $0))/openclaw-streaming-alert/main/openclaw-streaming-alert.js"
+SCRIPT_URL="https://raw.githubusercontent.com/LucioLiu/openclaw-streaming-alert/main/openclaw-streaming-alert.js"
 JS_DIR="$CONTROL_UI/js"
 DEST="$JS_DIR/openclaw-streaming-alert.js"
 

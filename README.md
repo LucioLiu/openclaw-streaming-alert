@@ -27,7 +27,7 @@ Chrome · Edge · Firefox · Safari · Opera 全部支持，基于 Web 标准 AP
 ### 一键安装（推荐）
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/你的用户名/openclaw-streaming-alert/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/LucioLiu/openclaw-streaming-alert/main/install.sh | bash
 ```
 
 ### 手动安装
