@@ -1,66 +1,81 @@
-# OpenClaw Streaming Alert
+# 🔔 OpenClaw Streaming Alert
 
-> 🔔 OpenClaw Web UI 提示音增强：回复完成时响叮叮，卡死时响警报，不用一直盯着屏幕。
+Sound notification enhancement for [OpenClaw](https://github.com/openclaw/openclaw) Web UI — plays a chime when AI finishes responding, and alerts you if the stream stalls.
 
-## 功能
+> **Inspiration**: This project was born because [OpenCode](https://github.com/opencode-ai/opencode) has a satisfying click sound when it finishes responding. I wanted the same experience in OpenClaw — plus stall detection, since OpenClaw sometimes freezes mid-task without any indication.
 
-| 事件 | 声音 | 说明 |
-|------|------|------|
-| 回复完成 | 叮叮（两声清脆高音） | AI 回复结束后立即提示 |
-| 可能卡死 | 嘟嘟嘟（三声低音） | 60 秒无新内容 |
-| 肯定卡死 | 再次嘟嘟嘟 | 180 秒仍无新内容 |
+[![GitHub](https://img.shields.io/badge/GitHub-LucioLiu%2Fopenclaw--streaming--alert-blue)](https://github.com/LucioLiu/openclaw-streaming-alert)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 为什么需要这个？
+## Features
 
-OpenClaw 在执行长任务时偶尔会卡死沉默，刷新也不行，消息被吞。有了提示音：
+| Event | Sound | Description |
+|-------|-------|-------------|
+| ✅ Stream complete | Ding-ding (two crisp tones) | AI finished responding |
+| ⚠️ Possible stall | Buzz-buzz-buzz (three low tones) | 60s with no new content |
+| 🚨 Hard stall | Buzz-buzz-buzz again | 180s still no new content |
 
-- ✅ 完成时知道可以回来了
-- ✅ 卡死时知道需要介入处理
-- ✅ 不用每分钟刷一次网页
+## Why?
 
-## 浏览器兼容性
+When running long tasks in OpenClaw, the stream sometimes stalls silently — the page appears active but nothing happens, and even refreshing doesn't help. This means:
 
-Chrome · Edge · Firefox · Safari · Opera 全部支持，基于 Web 标准 API（Web Audio API + MutationObserver）。
+- You stare at the screen for minutes wondering if it's still working
+- You're afraid to touch anything in case you lose progress
+- You waste time waiting instead of doing other things
 
-## 安装
+With this script:
+- 🔔 Know immediately when a response is complete
+- ⚠️ Get alerted when something goes wrong
+- 🖥️ Step away from your desk with confidence
 
-### 一键安装（推荐）
+## Browser Compatibility
+
+Chrome · Edge · Firefox · Safari · Opera — all modern browsers supported.
+
+Built on Web Audio API and MutationObserver (no external dependencies).
+
+## Install
+
+### One-line install (recommended)
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/LucioLiu/openclaw-streaming-alert/main/install.sh | bash
 ```
 
-### 手动安装
+### Manual install
 
-1. 下载 `openclaw-streaming-alert.js`
-2. 编辑 OpenClaw 的 `dist/control-ui/index.html`
-3. 在 `</body>` 前添加：
+1. Download [`openclaw-streaming-alert.js`](https://raw.githubusercontent.com/LucioLiu/openclaw-streaming-alert/main/openclaw-streaming-alert.js)
+2. Place it in your OpenClaw `dist/control-ui/js/` directory
+3. Edit `dist/control-ui/index.html`, add before `</body>`:
 
 ```html
 <script src="./js/openclaw-streaming-alert.js"></script>
 ```
 
-4. 把 `openclaw-streaming-alert.js` 放到 `dist/control-ui/js/` 目录下
-5. 刷新 OpenClaw 网页
+4. Refresh your OpenClaw web UI
 
-## 自定义
+## Configuration
 
-编辑 `openclaw-streaming-alert.js` 顶部的配置：
+Edit the top of `openclaw-streaming-alert.js`:
 
 ```javascript
-var VOLUME = 0.4;          // 音量 0.0 ~ 1.0
-var STALL_TIMEOUT = 60;    // 卡死判定秒数
-var STALL_HARD_TIMEOUT = 180;  // 严重卡死秒数
+var VOLUME = 0.4;              // Volume 0.0 ~ 1.0
+var STALL_TIMEOUT = 60;        // Seconds before stall warning
+var STALL_HARD_TIMEOUT = 180;  // Seconds before hard stall warning
 ```
 
-## 卸载
+## Uninstall
 
-从 `index.html` 中删除 `<script src="./js/openclaw-streaming-alert.js"></script>` 这一行，并删除 `js/openclaw-streaming-alert.js` 文件。
+Remove the `<script>` tag from `index.html` and delete `openclaw-streaming-alert.js`.
 
-## 注意事项
+## Notes
 
-- OpenClaw 更新后需要重新安装（会覆盖 `dist/` 目录）
-- 首次使用需要点击一下页面（浏览器音频策略要求用户先交互）
+- Re-install after OpenClaw updates (overwrites `dist/` directory)
+- First sound requires a page click (browser autoplay policy)
+
+## Topics
+
+`openclaw` `ai-agent` `notification` `sound-alert` `web-ui` `stall-detection` `streaming`
 
 ## License
 
